@@ -1,5 +1,4 @@
-import React, { Component } from "react"
-import logo from "./logo.svg"
+import React, { Component, useState } from "react"
 import "./App.css"
 
 class LambdaDemo extends Component {
@@ -31,20 +30,26 @@ class LambdaDemo extends Component {
   }
 }
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <LambdaDemo />
-        </header>
+const App = () => {
+  const [result, setResult] = useState(null);
+  const numbers = [1, 2, 3, 4, 5, 6];
+
+  const generateRandom = () => {
+    setResult(`${numbers[3]} - ${numbers[5]}`);
+  };
+
+  return (
+    <div className="App">
+      <div style={{ marginTop: 100, marginBottom: 50 }}>
+        Numeri:{" "}
+        {numbers.map((n, i) => (
+          <span>{`${n} ${i == 5 ? "" : "-"} `}</span>
+        ))}
       </div>
-    )
-  }
-}
+      <button onClick={() => generateRandom()}>Genera 2 numeri casuali</button>
+      <div style={{marginTop:50}}>{result}</div>
+    </div>
+  );
+};
 
 export default App
