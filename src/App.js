@@ -32,21 +32,29 @@ class LambdaDemo extends Component {
 
 const App = () => {
   const [result, setResult] = useState(null);
-  const numbers = [1, 2, 3, 4, 5, 6];
+  const elements = ["Fabio", "Mattia", "Bono", "Michele", "Aurelio", "Maurizio"];
 
   const generateRandom = () => {
-    setResult(`${numbers[3]} - ${numbers[5]}`);
+    let r1 = Math.floor(Math.random() * (4 - 2 + 1)) + 2;
+    let r2 = Math.floor(Math.random() * (4 - 2 + 1)) + 2;
+
+    do{
+      r2 = Math.floor(Math.random() * (4 - 2 + 1)) + 2;
+    }
+    while(r1==r2)
+
+    setResult(`${elements[r1]} - ${elements[r2]}`);
   };
 
   return (
     <div className="App">
       <div style={{ marginTop: 100, marginBottom: 50 }}>
-        Numeri:{" "}
-        {numbers.map((n, i) => (
+        <b>Partecipanti:</b>{" "}
+        {elements.map((n, i) => (
           <span>{`${n} ${i == 5 ? "" : "-"} `}</span>
         ))}
       </div>
-      <button onClick={() => generateRandom()}>Genera 2 numeri casuali</button>
+      <button onClick={() => generateRandom()}>Estrazione 2 partecipanti casuali</button>
       <div style={{marginTop:50}}>{result}</div>
     </div>
   );
